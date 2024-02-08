@@ -1,0 +1,119 @@
+options:
+  parameters:
+    author: army
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: default
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: Not titled yet
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: 384e3
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 12]
+    rotation: 0
+    state: enabled
+- name: blocks_file_source_0
+  id: blocks_file_source
+  parameters:
+    affinity: ''
+    alias: ''
+    begin_tag: pmt.PMT_NIL
+    comment: ''
+    file: /home/army/Desktop/name.iq
+    length: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    repeat: 'True'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [720, 436.0]
+    rotation: 0
+    state: true
+- name: blocks_null_sink_0
+  id: blocks_null_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    bus_structure_sink: '[[0,],]'
+    comment: ''
+    num_inputs: '1'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1360, 488.0]
+    rotation: 0
+    state: true
+- name: iridium_fft_burst_tagger_0
+  id: iridium_fft_burst_tagger
+  parameters:
+    affinity: ''
+    alias: ''
+    burst_post_len: '1000'
+    burst_pre_len: '1000'
+    burst_width: '100'
+    center_frequency: '1626000000'
+    comment: ''
+    debug: 'False'
+    fft_size: '1024'
+    history_size: '512'
+    max_burst_len: '0'
+    max_bursts: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    sample_rate: '32999'
+    threshold: '7'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1008, 260.0]
+    rotation: 0
+    state: true
+
+connections:
+- [blocks_file_source_0, '0', iridium_fft_burst_tagger_0, '0']
+- [iridium_fft_burst_tagger_0, '0', blocks_null_sink_0, '0']
+
+metadata:
+  file_format: 1
